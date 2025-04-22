@@ -1,10 +1,7 @@
 // 管理密码相关的变量
-let ADMIN_PASSWORD = '95981314'; // 用于存储密码哈希的键名
+let ADMIN_PASSWORD = '95981314'; // 默认管理密码
 
-console.log("变量2:", window.__ENV__.ADMIN_PASSWORD);
-// 检查环境变量是否设置了密码
-//const adminpassword = env.ADMIN_PASSWORD || "";
-if (adminpassword) {
+if (window.__ENV__ && window.__ENV__.ADMIN_PASSWORD) {
     ADMIN_PASSWORD = window.__ENV__.ADMIN_PASSWORD;
 }
 
