@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!isAdminVerified()) {
         // 仅清除隐藏API的选中状态
         const previousAPIs = JSON.parse(localStorage.getItem('selectedAPIs') || '[]');
-        const newAPIs = previousAPIs.filter(api =>  !API_SITES[api]?.adult);
+        const newAPIs = previousAPIs.filter(api => !API_SITES[api]?.adult);
         localStorage.setItem('selectedAPIs', JSON.stringify(newAPIs));
         selectedAPIs = newAPIs;
         updateSelectedApiCount();
