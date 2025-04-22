@@ -1,3 +1,110 @@
+// 管理密码相关的变量
+let ADMIN_PASSWORD = '9598'; // 用于存储密码哈希的键名
+
+// 检查用户是否已验证管理员密码
+function isAdminVerified() {
+    try {
+        const verificationData = JSON.parse(localStorage.getItem(ADMIN_PASSWORD_KEY) || '{}');
+        return verificationData && verificationData.verified;
+    } catch (error) {
+        return false;
+    }
+}
+
+// 验证管理员密码
+async function verifyAdminPassword(password) {
+    // 直接比较明文密码
+    const isValid = password === ADMIN_PASSWORD;
+    if (isValid) {
+        localStorage.setItem('adminVerified', JSON.stringify({ verified: true }));
+    }
+    return isValid;
+}
+
+// 显示管理员密码验证弹窗
+function showAdminPasswordModal() {
+    const adminPasswordModal = document.getElementById('adminPasswordModal');
+    if (adminPasswordModal) {
+        adminPasswordModal.style.display = 'flex';
+        
+        // 确保输入框获取焦点
+        setTimeout(() => {
+            const passwordInput = document.getElementById('adminPasswordInput');
+            if (passwordInput) {
+                passwordInput.focus();
+            }
+        }, 100);
+    }
+}
+
+// 隐藏管理员密码验证弹窗
+function hideAdminPasswordModal() {
+    const adminPasswordModal = document.getElementById('adminPasswordModal');
+    if (adminPasswordModal) {
+        adminPasswordModal.style.display = 'none';
+    }
+}
+
+// 显示管理员密码错误信息
+function showAdminPasswordError() {
+    const errorElement = document.getElementById('adminPasswordError');
+    if (errorElement) {
+        errorElement.classList.remove('hidden');
+    }
+}
+
+// 隐藏管理员密码错误信息
+function hideAdminPasswordError() {
+    const errorElement = document.getElementById('adminPasswordError');
+    if (errorElement) {
+        errorElement.classList.add('hidden');
+    }
+}
+
+// 处理管理员密码提交事件
+async function handleAdminPasswordSubmit() {
+    const passwordInput = document.getElementById('adminPasswordInput');
+    const password = passwordInput ? passwordInput.value.trim() : '';
+    if (await verifyAdminPassword(password)) {
+        hideAdminPasswordError();
+        hideAdminPasswordModal();
+        
+        // 修改 HIDE_BUILTIN_ADULT_APIS 的值
+        HIDE_BUILTIN_ADULT_APIS = false;
+        
+        // 重新初始化API设置面板，确保隐藏的API源显示
+        if (typeof initAPICheckboxes === 'function') {
+            initAPICheckboxes();
+        }
+        
+        // 可选：显示成功提示
+        showToast('已解锁隐藏的API源', 'success');
+    } else {
+        showAdminPasswordError();
+        if (passwordInput) {
+            passwordInput.value = '';
+            passwordInput.focus();
+        }
+    }
+}
+
+// 初始化管理员密码验证
+document.addEventListener('DOMContentLoaded', function() {
+    const submitButton = document.getElementById('adminPasswordSubmitBtn');
+    if (submitButton) {
+        submitButton.addEventListener('click', handleAdminPasswordSubmit);
+    }
+    
+    const passwordInput = document.getElementById('adminPasswordInput');
+    if (passwordInput) {
+        passwordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                handleAdminPasswordSubmit();
+            }
+        });
+    }
+});
+
 // 全局变量
 let selectedAPIs = JSON.parse(localStorage.getItem('selectedAPIs') || '["heimuer", "dbzy"]'); // 默认选中黑木耳和豆瓣资源
 let customAPIs = JSON.parse(localStorage.getItem('customAPIs') || '[]'); // 存储自定义API列表
