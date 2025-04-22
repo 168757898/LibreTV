@@ -40,6 +40,8 @@ function showAdminPasswordModal() {
             }
         }, 100);
     }
+    console.log("密码:", ADMIN_PASSWORD);
+    console.log("变量:", window.__ENV__.ADMIN_PASSWORD);
 }
 
 // 隐藏管理员密码验证弹窗
