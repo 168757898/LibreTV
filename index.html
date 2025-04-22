@@ -79,6 +79,22 @@
         </div>
         <div class="space-y-5">
             <!-- 数据源设置区域 -->
+            <!-- 密码输入弹窗 -->
+            <div id="adminPasswordModal" class="fixed inset-0 bg-black/95 hidden items-center justify-center z-[65] transition-opacity duration-300">
+                <div class="bg-[#111] p-8 rounded-lg w-11/12 max-w-md border border-[#333] max-h-[90vh] flex flex-col">
+                    <div class="flex justify-between items-center mb-6 flex-none">
+                       <h2 class="text-2xl font-bold gradient-text">管理功能验证</h2>
+                    </div>
+                    <div class="mb-6">
+                      <p class="text-gray-300 mb-4">请输入管理员密码以解锁隐藏功能</p>
+                      <input type="password" id="adminPasswordInput" class="w-full bg-[#111] border border-[#333] text-white px-4 py-3 rounded-lg focus:outline-none focus:border-white transition-colors" placeholder="密码...">
+                      <p id="adminPasswordError" class="text-red-500 mt-2 hidden">密码错误，请重试</p>
+                    </div>
+                   <button id="adminPasswordSubmitBtn" class="px-6 py-3 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300">
+                    确认
+                  </button>
+               </div>
+            </div>
             <div class="p-3 bg-[#151515] rounded-lg shadow-inner">
                 <label class="block text-sm font-medium text-gray-400 mb-3 border-b border-[#333] pb-1">数据源设置</label>
                 
@@ -88,7 +104,8 @@
                     <button onclick="selectAllAPIs(false)" class="px-2 py-1 bg-[#333] hover:bg-[#444] text-white text-xs rounded">全不选</button>
                     <button onclick="selectAllAPIs(true, true)" class="px-2 py-1 bg-[#333] hover:bg-[#444] text-white text-xs rounded">全选普通资源</button>
                 </div>
-                
+                <!-- 设置面板中添加一个按钮 -->
+                <button onclick="showAdminPasswordModal()" class="px-2 py-1 bg-[#600] hover:bg-[#700] text-white text-xs rounded my-2">解锁隐藏源</button>
                 <!-- API选择区域 - 使用滚动区域 -->
                 <div class="max-h-40 overflow-y-auto bg-[#191919] p-2 rounded-lg mb-3">
                     <div id="apiCheckboxes" class="grid grid-cols-2 gap-2">
