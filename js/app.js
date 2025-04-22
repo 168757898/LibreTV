@@ -78,7 +78,7 @@ async function handleAdminPasswordSubmit() {
     if (await verifyAdminPassword(password)) {
         hideAdminPasswordError();
         hideAdminPasswordModal();
-        const expirationTime = 1 * 1 * 1 * 60 * 1000; // 1天*1小时（毫秒）
+        const expirationTime = 1 * 1 * 60 * 60 * 1000; // 1天*1小时（毫秒）
         const expirationDate = new Date(Date.now() + expirationTime);
         
         localStorage.setItem('HIDE_BUILTIN_ADULT_APIS', 'false');
