@@ -2,6 +2,7 @@
 let ADMIN_PASSWORD = '95981314'; // 用于存储密码哈希的键名
 
 // 检查环境变量是否设置了密码
+const adminpassword = env.ADMIN_PASSWORD || "";
 if (adminpassword) {
     ADMIN_PASSWORD = window.__ENV__.ADMIN_PASSWORD;
 }
