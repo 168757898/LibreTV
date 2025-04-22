@@ -1,6 +1,11 @@
 // 管理密码相关的变量
 let ADMIN_PASSWORD = '95981314'; // 用于存储密码哈希的键名
 
+// 检查环境变量是否设置了密码
+if (typeof process !== 'undefined' && process.env && process.env.ADMIN_PASSWORD) {
+    ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
+}
+
 // 检查用户是否已验证管理员密码
 function isAdminVerified() {
     try {
@@ -113,6 +118,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 handleAdminPasswordSubmit();
             }
         });
+    }
+    if (!isAdminVerified()) {
+        // 仅清除隐藏API的选中状态
+        const previousAPIs = JSON.parse(localStorage.getItem('selectedAPIs') || '[]');
+        const newAPIs = previousAPIs.filter(api =>  !API_SITES[api]?.adult);
+        localStorage.setItem('selectedAPIs', JSON.stringify(newAPIs));
+        selectedAPIs = newAPIs;
+        updateSelectedApiCount();
+        initAPICheckboxes();
     }
 });
 
