@@ -1,6 +1,7 @@
 // 管理密码相关的变量
 let ADMIN_PASSWORD = '95981314'; // 用于存储密码哈希的键名
 
+console.log("变量2:", window.__ENV__.ADMIN_PASSWORD);
 // 检查环境变量是否设置了密码
 //const adminpassword = env.ADMIN_PASSWORD || "";
 if (adminpassword) {
@@ -44,7 +45,6 @@ function showAdminPasswordModal() {
     console.log("密码:", ADMIN_PASSWORD);
     console.log("变量:", window.__ENV__.ADMIN_PASSWORD);
     console.log("变量2:", window.__ENV__.PASSWORD);
-    console.log("变量2:", env.ADMIN_PASSWORD);
 }
 
 // 隐藏管理员密码验证弹窗
