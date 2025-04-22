@@ -78,7 +78,7 @@ async function handleAdminPasswordSubmit() {
     if (await verifyAdminPassword(password)) {
         hideAdminPasswordError();
         hideAdminPasswordModal();
-        const expirationTime = 1 * 1 * 60 * 60 * 1000; // 1天*1小时（毫秒）
+        const expirationTime = 1 * 1 * 1 * 60 * 1000; // 1天*1小时（毫秒）
         const expirationDate = new Date(Date.now() + expirationTime);
         
         localStorage.setItem('HIDE_BUILTIN_ADULT_APIS', 'false');
@@ -118,6 +118,15 @@ function checkHideBuiltinAdultApisStatus() {
             
             // 可选：显示提示
             showToast('隐藏API源的状态已过期，已重置', 'info');
+            if (!isAdminVerified()) {
+            // 仅清除隐藏API的选中状态
+               const previousAPIs = JSON.parse(localStorage.getItem('selectedAPIs') || '[]');
+               const newAPIs = previousAPIs.filter(api => !API_SITES[api]?.adult);
+               localStorage.setItem('selectedAPIs', JSON.stringify(newAPIs));
+               selectedAPIs = newAPIs;
+               updateSelectedApiCount();
+               initAPICheckboxes();
+             }
         } else {
             // 状态未过期，继续使用保存的状态
             HIDE_BUILTIN_ADULT_APIS = false;
@@ -147,15 +156,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 handleAdminPasswordSubmit();
             }
         });
-    }
-    if (!isAdminVerified()) {
-        // 仅清除隐藏API的选中状态
-        const previousAPIs = JSON.parse(localStorage.getItem('selectedAPIs') || '[]');
-        const newAPIs = previousAPIs.filter(api => !API_SITES[api]?.adult);
-        localStorage.setItem('selectedAPIs', JSON.stringify(newAPIs));
-        selectedAPIs = newAPIs;
-        updateSelectedApiCount();
-        initAPICheckboxes();
     }
 });
 
