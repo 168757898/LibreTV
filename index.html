@@ -409,13 +409,7 @@
         // 保存原始 js‑sha256 实现，避免被 password.js 覆盖
         window._jsSha256 = window.sha256;
     </script>
-    <script src="js/config.js"></script>
-    <script src="js/ui.js"></script>
-    <script src="js/api.js"></script>
-    <script src="js/douban.js"></script>
-    <script src="js/password.js"></script>
-    <script src="js/app.js"></script>
-
+    
     <!-- 环境变量注入脚本 -->
     <script>
         // 创建全局环境变量对象
@@ -427,6 +421,13 @@
         window.__ENV__.ADMIN_PASSWORD = "{{ADMIN_PASSWORD}}";
     </script>
 
+    <script src="js/config.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/douban.js"></script>
+    <script src="js/password.js"></script>
+    <script src="js/app.js"></script>
+    
     <!-- 弹窗显示脚本 -->
     <script>
         // 在页面加载完成后检查用户是否首次访问
