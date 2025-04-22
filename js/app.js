@@ -114,13 +114,13 @@ function checkHideBuiltinAdultApisStatus() {
             // 状态已过期，重置状态
             localStorage.removeItem('HIDE_BUILTIN_ADULT_APIS');
             localStorage.removeItem('HIDE_BUILTIN_ADULT_APIS_EXPIRES');
-            window.HIDE_BUILTIN_ADULT_APIS = true;
+            HIDE_BUILTIN_ADULT_APIS = true;
             
             // 可选：显示提示
             showToast('隐藏API源的状态已过期，已重置', 'info');
         } else {
             // 状态未过期，继续使用保存的状态
-            window.HIDE_BUILTIN_ADULT_APIS = false;
+            HIDE_BUILTIN_ADULT_APIS = false;
         }
     }
 }
