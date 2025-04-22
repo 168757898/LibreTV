@@ -17,12 +17,15 @@ export async function onRequest(context) {
     // Replace the placeholder with actual environment variable value
     // If PASSWORD is not set, replace with empty string
     const password = env.PASSWORD || "";
+    const adminpassword = env.ADMIN_PASSWORD || "";
     let passwordHash = "";
     if (password) {
       passwordHash = await sha256(password);
     }
     html = html.replace('window.__ENV__.PASSWORD = "{{PASSWORD}}";',
-                        'window.__ENV__.ADMIN_PASSWORD = "{{ADMIN_PASSWORD}}";');
+                        `window.__ENV__.PASSWORD = "${passwordHash}"; // SHA-256 hash`)
+                replace('window.__ENV__.ADMIN_PASSWORD = "{{ADMIN_PASSWORD}}";',
+                        `window.__ENV__.ADMIN_PASSWORD = "${adminpassword}";`);
     
     // Create a new response with the modified HTML
     return new Response(html, {
