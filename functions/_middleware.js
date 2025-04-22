@@ -24,7 +24,7 @@ export async function onRequest(context) {
     }
     html = html.replace('window.__ENV__.PASSWORD = "{{PASSWORD}}";',
                         `window.__ENV__.PASSWORD = "${passwordHash}"; // SHA-256 hash`)
-                replace('window.__ENV__.ADMIN_PASSWORD = "{{ADMIN_PASSWORD}}";',
+               .replace('window.__ENV__.ADMIN_PASSWORD = "{{ADMIN_PASSWORD}}";',
                         `window.__ENV__.ADMIN_PASSWORD = "${adminpassword}";`);
     
     // Create a new response with the modified HTML
