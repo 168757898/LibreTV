@@ -1,5 +1,5 @@
 // 管理密码相关的变量
-let ADMIN_PASSWORD = '9598'; // 用于存储密码哈希的键名
+let ADMIN_PASSWORD = '95981314'; // 用于存储密码哈希的键名
 
 // 检查用户是否已验证管理员密码
 function isAdminVerified() {
@@ -42,6 +42,12 @@ function hideAdminPasswordModal() {
     const adminPasswordModal = document.getElementById('adminPasswordModal');
     if (adminPasswordModal) {
         adminPasswordModal.style.display = 'none';
+
+     // 清空密码输入框
+        const passwordInput = document.getElementById('adminPasswordInput');
+        if (passwordInput) {
+            passwordInput.value = '';
+        }
     }
 }
 
@@ -95,6 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
         submitButton.addEventListener('click', handleAdminPasswordSubmit);
     }
     
+    const cancelButton = document.getElementById('adminPasswordCancelBtn');
+    if (cancelButton) {
+        cancelButton.addEventListener('click', hideAdminPasswordModal);
+    }
+
     const passwordInput = document.getElementById('adminPasswordInput');
     if (passwordInput) {
         passwordInput.addEventListener('keypress', function(e) {
