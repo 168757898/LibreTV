@@ -78,6 +78,11 @@ async function handleAdminPasswordSubmit() {
     if (await verifyAdminPassword(password)) {
         hideAdminPasswordError();
         hideAdminPasswordModal();
+        const expirationTime = 1 * 4 * 60 * 60 * 1000; // 1天*4小时（毫秒）
+        const expirationDate = new Date(Date.now() + expirationTime);
+        
+        localStorage.setItem('HIDE_BUILTIN_ADULT_APIS', 'false');
+        localStorage.setItem('HIDE_BUILTIN_ADULT_APIS_EXPIRES', expirationDate.toISOString());
         
         // 修改 HIDE_BUILTIN_ADULT_APIS 的值
         HIDE_BUILTIN_ADULT_APIS = false;
@@ -98,8 +103,33 @@ async function handleAdminPasswordSubmit() {
     }
 }
 
+// 检查 HIDE_BUILTIN_ADULT_APIS 的状态是否过期
+function checkHideBuiltinAdultApisStatus() {
+    const savedStatus = localStorage.getItem('HIDE_BUILTIN_ADULT_APIS');
+    const savedExpires = localStorage.getItem('HIDE_BUILTIN_ADULT_APIS_EXPIRES');
+    
+    if (savedStatus === 'false' && savedExpires) {
+        const expirationDate = new Date(savedExpires);
+        if (new Date() > expirationDate) {
+            // 状态已过期，重置状态
+            localStorage.removeItem('HIDE_BUILTIN_ADULT_APIS');
+            localStorage.removeItem('HIDE_BUILTIN_ADULT_APIS_EXPIRES');
+            window.HIDE_BUILTIN_ADULT_APIS = true;
+            
+            // 可选：显示提示
+            showToast('隐藏API源的状态已过期，已重置', 'info');
+        } else {
+            // 状态未过期，继续使用保存的状态
+            window.HIDE_BUILTIN_ADULT_APIS = false;
+        }
+    }
+}
+
 // 初始化管理员密码验证
 document.addEventListener('DOMContentLoaded', function() {
+    // 检查 HIDE_BUILTIN_ADULT_APIS 的状态
+    checkHideBuiltinAdultApisStatus();
+    
     const submitButton = document.getElementById('adminPasswordSubmitBtn');
     if (submitButton) {
         submitButton.addEventListener('click', handleAdminPasswordSubmit);
