@@ -121,10 +121,6 @@ const API_SITES = {
         name: '玉兔资源',
         adult: true
     },
-    baiduy: {
-        api: 'https://api.apibdzy.com',
-        name: '百度云资源',
-    },
     uk: {
         api: 'https://api.ukuapi.com',
         name: 'U酷资源',
@@ -132,26 +128,47 @@ const API_SITES = {
     qilin: {
         api: 'https://yutuzy10.com',
         name: '麒麟资源',
-    },
-    tomato: {
-        api: 'http://api.fqzy.cc',
-        name: '番茄资源',
-    },
-    hn: {
-        api: 'https://www.hongniuzy1.com',
-        name: '红牛资源',
+        adult: true
     },
     wujin: {
         api: 'https://api.wujinapi.com',
         name: '无尽资源',
     },
-    kuaibozy: {
-        api: 'http://www.kuaibozy.com',
-        name: 'kbzy资源',
+    omiys: {
+        api: 'https://dy.omiys.com',
+        name: 'om资源',
     },
-    8090: {
-        api: 'http://zy.yilans.net:8090',
-        name: '8090资源',
+    ffzy2: {
+        api: 'http://cj.ffzyapi.com',
+        name: '非凡资源',
+    },
+    liangzi: {
+        api: 'http://cj.lziapi.com',
+        name: '量子资源',
+    },
+    hme: {
+        api: 'https://json02.heimuer.xyz',
+        name: '黑木耳二',
+    },
+    wol: {
+        api: 'https://collect.wolongzy.cc',
+        name: '卧龙二',
+    },
+    ikun: {
+        api: 'https://ikunzyapi.com',
+        name: 'ikun资源',
+    },
+    wang: {
+        api: 'https://api.wwzy.tv',
+        name: '旺旺资源',
+    },
+    7na7: {
+        api: 'https://vod.7na7.com',
+        name: '量子暴风',
+    },
+    kczy: {
+        api: 'https://caiji.kczyapi.com',
+        name: '快车资源',
     }
     // 您可以按需添加更多源
 };
