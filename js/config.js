@@ -120,6 +120,38 @@ const API_SITES = {
         api: 'https://yutuzy10.com',
         name: '玉兔资源',
         adult: true
+    },
+    baiduy: {
+        api: 'https://api.apibdzy.com',
+        name: '百度云资源',
+    },
+    uk: {
+        api: 'https://api.ukuapi.com',
+        name: 'U酷资源',
+    },
+    qilin: {
+        api: 'https://yutuzy10.com',
+        name: '麒麟资源',
+    },
+    tomato: {
+        api: 'http://api.fqzy.cc',
+        name: '番茄资源',
+    },
+    hn: {
+        api: 'https://www.hongniuzy1.com',
+        name: '红牛资源',
+    },
+    wujin: {
+        api: 'https://api.wujinapi.com',
+        name: '无尽资源',
+    },
+    kuaibozy: {
+        api: 'http://www.kuaibozy.com',
+        name: 'kbzy资源',
+    },
+    8090: {
+        api: 'http://zy.yilans.net:8090',
+        name: '8090资源',
     }
     // 您可以按需添加更多源
 };
