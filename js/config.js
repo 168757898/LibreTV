@@ -133,6 +133,42 @@ const API_SITES = {
     wujin: {
         api: 'https://api.wujinapi.com',
         name: '无尽资源',
+    },
+    omiys: {
+        api: 'https://dy.omiys.com',
+        name: 'om资源',
+    },
+    ffzy2: {
+        api: 'http://cj.ffzyapi.com',
+        name: '非凡资源',
+    },
+    liangzi: {
+        api: 'http://cj.lziapi.com',
+        name: '量子资源',
+    },
+    hme: {
+        api: 'https://json02.heimuer.xyz',
+        name: '黑木耳二',
+    },
+    wol: {
+        api: 'https://collect.wolongzy.cc',
+        name: '卧龙二',
+    },
+    ikun: {
+        api: 'https://ikunzyapi.com',
+        name: 'ikun资源',
+    },
+    wang: {
+        api: 'https://api.wwzy.tv',
+        name: '旺旺资源',
+    },
+    na7: {
+        api: 'https://vod.7na7.com',
+        name: '量子暴风',
+    },
+    kczy: {
+        api: 'https://caiji.kczyapi.com',
+        name: '快车资源',
     }
     // 您可以按需添加更多源
 };
