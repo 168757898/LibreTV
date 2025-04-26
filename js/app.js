@@ -1,5 +1,5 @@
 // 管理密码相关的变量
-let ADMIN_PASSWORD = '1234'; // 默认管理密码
+let ADMIN_PASSWORD = 'chenxing'; // 默认管理密码
 
 if (window.__ENV__ && window.__ENV__.ADMIN_PASSWORD) {
     ADMIN_PASSWORD = window.__ENV__.ADMIN_PASSWORD;
