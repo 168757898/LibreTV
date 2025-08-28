@@ -81,6 +81,10 @@ const API_SITES = {
         api: 'https://cj.rycjapi.com',
         name: '如意资源',
     },
+    4kvision: {
+        api: 'http://cms4ksj.lyyytv.cn',
+        name: '4k视界',
+    },
     jkun: {
         api: 'https://jkunzyapi.com',
         name: 'jkun资源',
